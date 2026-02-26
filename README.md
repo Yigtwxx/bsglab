@@ -2,6 +2,10 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.x-green.svg)
+![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
+![Unit Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
+![Architecture](https://img.shields.io/badge/architecture-SPN-blueviolet.svg)
+![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)
 
 **Yildiz Cipher** is a custom-built, block-based symmetrical encryption algorithm and console application written entirely in Python. Designed as an educational project, it provides practical insights into how modern cryptography architectures—like Substitution-Permutation Networks (SPN)—operate under the hood.
 
