@@ -151,6 +151,26 @@ python -m unittest test_cipher.py
 
 ---
 
+## ⚙️ Continuous Integration (GitHub Actions)
+
+This repository is equipped with a **GitHub Actions setup (`ci.yml`)** to automate the validation process. Every time you push code or open a Pull Request to the `main` or `master` branches, GitHub's servers will automatically:
+1. Spin up a fresh Ubuntu environment.
+2. Install multiple versions of Python (`3.9`, `3.10`, `3.11`, `3.12`) to ensure broad compatibility.
+3. Automatically execute all unit tests in `test_cipher.py`.
+4. Only pass the build if your cryptographic logic remains intact.
+
+*This pipeline purposely avoids strict style checkers (linters) and caching issues to guarantee a frictionless, functionality-first development experience.*
+
+### 🏷️ Recommended Issue/PR Labels
+To keep this project organized on GitHub, we recommend using the following labels for your Issues and Pull Requests:
+- `bug` : For encryption logic failures or padding errors.
+- `enhancement` : Proposing stronger hashing architectures or new cipher modes (e.g., CBC).
+- `documentation` : Improving this README or internal docstrings.
+- `good first issue` : Small improvements (e.g., UI tweaks in the console loop).
+- `test` : Adding more rigorous Avalanche Effect or mathematical validation checks.
+
+---
+
 ## ⚠️ Disclaimer
 
 **Educational Purposes Only.**  
