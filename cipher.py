@@ -9,7 +9,7 @@ class YildizCipher:
         # Ensure key is 16 bytes
         self.key = hashlib.md5(key_text.encode('utf-8')).digest()
         self.block_size = 16
-        self.rounds = 4
+        self.rounds = 10
         self.round_keys = self._generate_round_keys()
 
     def _generate_round_keys(self):
@@ -195,7 +195,7 @@ class YildizCipher:
         
         return state
 
-    def encrypt(self, plaintext_str):
+    def encrypt(self, plaintext_str, mode='ECB'):
         if isinstance(plaintext_str, str):
             plaintext_bytes = plaintext_str.encode('utf-8')
         else:
@@ -203,24 +203,49 @@ class YildizCipher:
             
         padded_text = self._pad(plaintext_bytes)
         encrypted_bytes = b""
-        
-        # ECB Mode (Electronic Code Book) - Simplest for this assignment
-        # For each 16-byte block...
-        for i in range(0, len(padded_text), self.block_size):
-            block = padded_text[i : i + self.block_size]
-            encrypted_block = self.encrypt_block(block)
-            encrypted_bytes += encrypted_block
+
+        if mode == 'CBC':
+            # Generate random IV
+            import os
+            iv = os.urandom(self.block_size)
+            encrypted_bytes += iv
+            previous_block = iv
+
+            for i in range(0, len(padded_text), self.block_size):
+                block = padded_text[i : i + self.block_size]
+                xor_block = self._xor_bytes(block, previous_block)
+                encrypted_block = self.encrypt_block(xor_block)
+                encrypted_bytes += encrypted_block
+                previous_block = encrypted_block
+
+        else: # ECB Mode
+            for i in range(0, len(padded_text), self.block_size):
+                block = padded_text[i : i + self.block_size]
+                encrypted_block = self.encrypt_block(block)
+                encrypted_bytes += encrypted_block
             
         return encrypted_bytes.hex()
 
-    def decrypt(self, ciphertext_hex):
+    def decrypt(self, ciphertext_hex, mode='ECB'):
         ciphertext_bytes = bytes.fromhex(ciphertext_hex)
         decrypted_padded = b""
         
-        for i in range(0, len(ciphertext_bytes), self.block_size):
-            block = ciphertext_bytes[i : i + self.block_size]
-            decrypted_block = self.decrypt_block(block)
-            decrypted_padded += decrypted_block
+        if mode == 'CBC':
+            iv = ciphertext_bytes[:self.block_size]
+            actual_ciphertext = ciphertext_bytes[self.block_size:]
+            previous_block = iv
+
+            for i in range(0, len(actual_ciphertext), self.block_size):
+                block = actual_ciphertext[i : i + self.block_size]
+                decrypted_block_raw = self.decrypt_block(block)
+                decrypted_block = self._xor_bytes(decrypted_block_raw, previous_block)
+                decrypted_padded += decrypted_block
+                previous_block = block
+        else:
+            for i in range(0, len(ciphertext_bytes), self.block_size):
+                block = ciphertext_bytes[i : i + self.block_size]
+                decrypted_block = self.decrypt_block(block)
+                decrypted_padded += decrypted_block
             
         try:
             decrypted_bytes = self._unpad(decrypted_padded)
