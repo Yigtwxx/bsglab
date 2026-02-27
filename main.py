@@ -13,29 +13,40 @@ def main():
     
     while True:
         print("\n--- İŞLEM SEÇİN ---")
-        print("1. Metin Şifrele")
-        print("2. Şifre Çöz")
-        print("3. Çığ Etkisi Testi (Avalanche)")
-        print("4. Çıkış")
+        print("1. Metin Şifrele (ECB)")
+        print("2. Metin Şifrele (CBC)")
+        print("3. Şifre Çöz")
+        print("4. Çığ Etkisi Testi (Avalanche)")
+        print("5. Çıkış")
         
-        secim = input("Seçiminiz (1/2/3/4): ").strip()
+        secim = input("Seçiminiz (1/2/3/4/5): ").strip()
         
         if secim == '1':
             metin = input("\nŞifrelenecek metni girin: ")
             if metin:
-                sifreli = cipher.encrypt(metin)
-                print(f"--> Şifreli Metin (Hex): {sifreli}")
-            
+                sifreli = cipher.encrypt(metin, mode='ECB')
+                print(f"--> Şifreli Metin (Hex) [ECB]: {sifreli}")
+
         elif secim == '2':
+            metin = input("\nŞifrelenecek metni girin: ")
+            if metin:
+                sifreli = cipher.encrypt(metin, mode='CBC')
+                print(f"--> Şifreli Metin (Hex) [CBC]: {sifreli}")
+
+        elif secim == '3':
             sifreli_hex = input("\nÇözülecek şifreyi (Hex) girin: ")
+            mod = input("Mod (ECB/CBC) [Varsayılan ECB]: ").strip().upper()
+            if not mod:
+                mod = 'ECB'
+
             if sifreli_hex:
                 try:
-                    cozulen = cipher.decrypt(sifreli_hex)
+                    cozulen = cipher.decrypt(sifreli_hex, mode=mod)
                     print(f"--> Çözülen Metin: {cozulen}")
                 except Exception as e:
                     print(f"HATA: Şifre çözülemedi! ({e})")
                 
-        elif secim == '3':
+        elif secim == '4':
             metin = input("\nTest edilecek metni girin: ")
             if metin:
                 # 1. Original Encryption
@@ -69,7 +80,7 @@ def main():
                 else:
                     print("SONUÇ: Çığ etkisi ZAYIF.")
 
-        elif secim == '4':
+        elif secim == '5':
             print("Çıkış yapılıyor...")
             break
         else:
