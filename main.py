@@ -1,7 +1,7 @@
-from cipher import YildizCipher
+from cipher import YildizCipher, __version__
 
 def main():
-    print("=== Yildiz Şifreleme Aracı ===")
+    print(f"=== Yildiz Şifreleme Aracı v{__version__} ===")
     
     # 1. Anahtar Al
     anahtar = input("Anahtar giriniz (örn: gizli123): ")

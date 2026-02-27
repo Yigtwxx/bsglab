@@ -1,5 +1,7 @@
 import hashlib
 
+__version__ = "1.0.0"
+
 class YildizCipher:
     def __init__(self, key_text):
         """
