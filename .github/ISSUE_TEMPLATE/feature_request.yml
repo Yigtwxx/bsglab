@@ -1,0 +1,38 @@
+name: Feature Request
+description: Suggest an enhancement for cipher design, CLI, docs, or tests.
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Proposals with clear scope and rationale are easier to review.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What limitation or pain point are you trying to solve?
+      placeholder: Avalanche test output is hard to compare across runs.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      description: Describe your idea with enough implementation detail.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What else did you evaluate?
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected Impact
+      description: Explain effects on usability, performance, tests, or security.
