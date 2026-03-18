@@ -1,21 +1,33 @@
-# Yildiz Cipher (Yıldız Encryption Tool)
+# Yıldız Cipher - Custom Python Encryption Library
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Python](https://img.shields.io/badge/python-3.x-green.svg)
+![Python](https://img.shields.io/badge/python-3.6+-green.svg)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
 ![Unit Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
 ![Architecture](https://img.shields.io/badge/architecture-SPN-blueviolet.svg)
 ![Contributions](https://img.shields.io/badge/contributions-welcome-orange.svg)
+[![GitHub stars](https://img.shields.io/github/stars/Yigtwxx/bsglab?style=social)](https://github.com/Yigtwxx/bsglab)
+[![GitHub issues](https://img.shields.io/github/issues/Yigtwxx/bsglab)](https://github.com/Yigtwxx/bsglab/issues)
 
-**Yildiz Cipher** is a custom-built, block-based symmetrical encryption algorithm and console application written entirely in Python. Designed as an educational project, it provides practical insights into how modern cryptography architectures—like Substitution-Permutation Networks (SPN)—operate under the hood.
+**Yıldız Cipher** is a custom-built, block-based symmetrical encryption algorithm and console application written entirely in Python. This educational project demonstrates the inner workings of modern cryptography architectures like Substitution-Permutation Networks (SPN).
 
-This tool not only facilitates text encryption and decryption using a user-supplied key but also features a built-in **Avalanche Effect Testing Suite** to measure the algorithm's robustness against minor plaintext modifications.
+🔐 **Key Features:**
+- 128-bit block encryption with custom S-Box and P-Box
+- ECB and CBC cipher modes
+- Built-in Avalanche Effect testing
+- Interactive CLI interface
+- Educational codebase for learning cryptography
+
+**Keywords:** Python encryption, custom cipher, SPN algorithm, block cipher, cryptography tutorial, Python security, encryption library
 
 ---
 
 ## 📖 Table of Contents
 
+- [Quick Start](#-quick-start)
 - [Core Features](#-core-features)
+- [Installation](#-installation)
+- [Usage Examples](#-usage-examples)
 - [Project Architecture & File Structure](#-project-architecture--file-structure)
 - [Algorithm Deep Dive (How it Works)](#-algorithm-deep-dive-how-it-works)
   - [1. Key Schedule](#1-key-schedule)
@@ -23,10 +35,25 @@ This tool not only facilitates text encryption and decryption using a user-suppl
   - [3. The P-Box (Permutation)](#3-the-p-box-permutation)
   - [4. The Mixing Layer (Diffusion)](#4-the-mixing-layer-diffusion)
   - [5. Padding & Cipher Mode](#5-padding--cipher-mode)
-- [Installation Requirements](#-installation-requirements)
-- [Usage Guide](#-usage-guide)
 - [Running Unit Tests](#-running-unit-tests)
+- [Contributing](#-contributing)
+- [License](#-license)
 - [Disclaimer](#-disclaimer)
+
+---
+
+## 🚀 Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/Yigtwxx/bsglab.git
+cd bsglab
+
+# Run the application
+python main.py
+```
+
+Enter your encryption key and start encrypting/decrypting text!
 
 ---
 
@@ -84,16 +111,85 @@ To ensure a high Avalanche Effect, the bytes are mathematically bound to their n
 
 ---
 
-## 🚀 Installation Requirements
+---
 
-This project relies purely on standard Python libraries (`hashlib`, `unittest`). **No third-party packages or `pip` installations are required.**
+## 📦 Installation
 
-1. Ensure you have **Python 3.x** installed on your system.
-2. Clone the repository or download the source files.
-3. Open your terminal/command prompt and navigate to the project directory:
+### Requirements
+- **Python 3.6+** (uses only standard library modules)
+- No external dependencies required
+
+### Setup Steps
+1. **Clone the repository:**
    ```bash
-   cd path/to/bsglab
+   git clone https://github.com/Yigtwxx/bsglab.git
+   cd bsglab
    ```
+
+2. **Verify Python version:**
+   ```bash
+   python --version
+   # Should show Python 3.6 or higher
+   ```
+
+3. **Run the application:**
+   ```bash
+   python main.py
+   ```
+
+### Alternative: Direct Download
+Download the source files (`cipher.py`, `main.py`, `test_cipher.py`) and run `python main.py` in the same directory.
+
+---
+
+## 💻 Usage Examples
+
+### Basic Encryption/Decryption
+```bash
+python main.py
+```
+
+```
+=== Yildiz Şifreleme Aracı ===
+Anahtar giriniz (örn: gizli123): mySecretKey
+
+--- İŞLEM SEÇİN ---
+1. Metin Şifrele (ECB)
+2. Metin Şifrele (CBC)
+3. Şifre Çöz
+4. Çığ Etkisi Testi (Avalanche)
+5. Çıkış
+
+Seçiminiz (1/2/3/4/5): 1
+Şifrelenecek metni girin: Hello World!
+--> Şifreli Metin (Hex) [ECB]: a1b2c3d4e5f6789...
+```
+
+### Avalanche Effect Test
+```
+Seçiminiz (1/2/3/4/5): 4
+Test edilecek metni girin: Hello World
+--> Orijinal Şifre: a1b2c3d4e5f6789...
+--> Değiştirilmiş Şifre: z9y8x7w6v54321...
+--> Fark Yüzdesi: 68.75%
+```
+
+### Programmatic Usage
+```python
+from cipher import YildizCipher
+
+# Initialize with key
+cipher = YildizCipher("mySecretKey")
+
+# Encrypt
+plaintext = "Hello, World!"
+encrypted = cipher.encrypt(plaintext, mode='ECB')
+print(f"Encrypted: {encrypted}")
+
+# Decrypt
+decrypted = cipher.decrypt(encrypted, mode='ECB')
+print(f"Decrypted: {decrypted}")
+```
 
 ---
 
@@ -171,7 +267,32 @@ To keep this project organized on GitHub, we recommend using the following label
 
 ---
 
-## ⚠️ Disclaimer
+## 🤝 Contributing
+
+Contributions are welcome and encouraged.
+
+1. Read [CONTRIBUTING.md](CONTRIBUTING.md) for the full workflow.
+2. Follow [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) during collaboration.
+3. Use the provided issue and pull request templates in `.github/`.
+
+If your change impacts encryption behavior, include test updates in `test_cipher.py`.
+
+---
+
+## 📄 License
 
 **Educational Purposes Only.**  
-While using robust mathematical principles like PKCS#7, MD5/SHA256 schedules, and SPN architectures, `YildizCipher` uses ECB mode and math-based algebraic S-Boxes. It should **not** be used in production-grade software to encrypt deeply sensitive or financial data. For enterprise security, always rely on vetted standard libraries like AES-GCM (e.g., via the `cryptography` Python package).
+While using robust mathematical principles like PKCS#7, MD5/SHA256 schedules, and SPN architectures, `Yıldız Cipher` uses ECB mode and math-based algebraic S-Boxes. It should **not** be used in production-grade software to encrypt deeply sensitive or financial data. For enterprise security, always rely on vetted standard libraries like AES-GCM (e.g., via the `cryptography` Python package).
+
+---
+
+## 📞 Contact & Support
+
+- **GitHub Issues:** [Report bugs or request features](https://github.com/Yigtwxx/bsglab/issues)
+- **Discussions:** [Join the conversation](https://github.com/Yigtwxx/bsglab/discussions)
+
+**Star this repo** ⭐ if you find it useful for learning cryptography!
+
+---
+
+*Built with ❤️ for educational purposes. Learn, experiment, and contribute!*
