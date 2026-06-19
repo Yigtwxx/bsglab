@@ -1,4 +1,4 @@
-# Yıldız Cipher - Custom Python Encryption Library
+# Star Cipher - Custom Python Encryption Library
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/python-3.6+-green.svg)
@@ -11,7 +11,7 @@
 
 **Yıldız Cipher** is a custom-built, block-based symmetrical encryption algorithm and console application written entirely in Python. This educational project demonstrates the inner workings of modern cryptography architectures like Substitution-Permutation Networks (SPN).
 
-🔐 **Key Features:**
+ **Key Features:**
 - 128-bit block encryption with custom S-Box and P-Box
 - ECB and CBC cipher modes
 - Built-in Avalanche Effect testing
@@ -22,7 +22,7 @@
 
 ---
 
-## 📖 Table of Contents
+##  Table of Contents
 
 - [Quick Start](#-quick-start)
 - [Core Features](#-core-features)
@@ -42,7 +42,7 @@
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ```bash
 # Clone the repository
@@ -57,7 +57,7 @@ Enter your encryption key and start encrypting/decrypting text!
 
 ---
 
-## ✨ Core Features
+##  Core Features
 
 1. **Deterministic Text Encryption:** Utilizes a custom 128-bit block size algorithm to secure plaintext strings, converting them into Hexadecimal format for secure transmission and storage.
 2. **Text Decryption:** Allows users to input exact Hexadecimal ciphertexts alongside their secret keys to recover the original plaintext smoothly.
@@ -66,7 +66,7 @@ Enter your encryption key and start encrypting/decrypting text!
 
 ---
 
-## 📂 Project Architecture & File Structure
+##  Project Architecture & File Structure
 
 The workspace is kept minimal, modular, and highly readable:
 
@@ -81,7 +81,7 @@ bsglab/
 
 ---
 
-## 🧠 Algorithm Deep Dive (How it Works)
+##  Algorithm Deep Dive (How it Works)
 
 The algorithm is structured similarly to AES (Advanced Encryption Standard), utilizing a multi-round **Substitution-Permutation Network (SPN)**. It operates on **16-byte (128-bit) blocks** and goes through **4 distinct computational rounds**.
 
@@ -113,7 +113,7 @@ To ensure a high Avalanche Effect, the bytes are mathematically bound to their n
 
 ---
 
-## 📦 Installation
+##  Installation
 
 ### Requirements
 - **Python 3.6+** (uses only standard library modules)
@@ -142,7 +142,7 @@ Download the source files (`cipher.py`, `main.py`, `test_cipher.py`) and run `py
 
 ---
 
-## 💻 Usage Examples
+##  Usage Examples
 
 ### Basic Encryption/Decryption
 ```bash
@@ -193,7 +193,7 @@ print(f"Decrypted: {decrypted}")
 
 ---
 
-## 💻 Usage Guide
+##  Usage Guide
 
 Start the application by executing the `main.py` entry point:
 
@@ -257,7 +257,7 @@ This repository is equipped with a **GitHub Actions setup (`ci.yml`)** to automa
 
 *This pipeline purposely avoids strict style checkers (linters) and caching issues to guarantee a frictionless, functionality-first development experience.*
 
-### 🏷️ Recommended Issue/PR Labels
+###  Recommended Issue/PR Labels
 To keep this project organized on GitHub, we recommend using the following labels for your Issues and Pull Requests:
 - `bug` : For encryption logic failures or padding errors.
 - `enhancement` : Proposing stronger hashing architectures or new cipher modes (e.g., CBC).
@@ -267,7 +267,7 @@ To keep this project organized on GitHub, we recommend using the following label
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome and encouraged.
 
@@ -279,14 +279,14 @@ If your change impacts encryption behavior, include test updates in `test_cipher
 
 ---
 
-## 📄 License
+##  License
 
 **Educational Purposes Only.**  
 While using robust mathematical principles like PKCS#7, MD5/SHA256 schedules, and SPN architectures, `Yıldız Cipher` uses ECB mode and math-based algebraic S-Boxes. It should **not** be used in production-grade software to encrypt deeply sensitive or financial data. For enterprise security, always rely on vetted standard libraries like AES-GCM (e.g., via the `cryptography` Python package).
 
 ---
 
-## 📞 Contact & Support
+##  Contact & Support
 
 - **GitHub Issues:** [Report bugs or request features](https://github.com/Yigtwxx/bsglab/issues)
 - **Discussions:** [Join the conversation](https://github.com/Yigtwxx/bsglab/discussions)
